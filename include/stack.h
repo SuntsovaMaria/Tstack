@@ -10,13 +10,13 @@ private:
     int sz;
 public:
     TStack() {
-        sz = 100;
+        sz = 10;
         arr = new T[sz];
         topid = -1;
     }
     TStack(T k) {
 
-        if (k >= 0) {
+        if (k >0) {
             sz = k;
             arr = new T[sz];
             topid = -1;
@@ -37,27 +37,22 @@ public:
         delete[] arr;
     }
     void push(T el) {
-        int nsz = getSize();
-
-        if (nsz >= sz) {
-            T* tmp = new T[sz * 2];
-
-            for (int i = 0; i < sz; ++i) {
-                tmp[i] = arr[i];
-            }
+        if (topid >sz - 1) {
+            T* arrtmp = new  T[sz * 2];
+            std::copy(arr, arr + sz, arrtmp);
             delete[] arr;
-            arr = tmp;
-            arr[topid++] = el;
-            sz = sz * 2;
+            arr = arrtmp;
+            sz *= 2;
+
         }
-        else {
-            arr[topid++] = el;
-        }
+        topid++;
+        arr[topid] = el;
       
     }
     T top() {
         if (!isEmpty()) {
-            return arr[topid];
+            T res = arr[topid];
+            return res;
         }
         else {
             throw ("Stack is empty");
@@ -85,5 +80,7 @@ public:
         }
         return true;
     }
+   
+    
 
 };

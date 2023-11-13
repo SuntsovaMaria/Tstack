@@ -18,12 +18,27 @@ TEST(TStack, test_isEmpty_1) {
     TStack<int> stack;
     ASSERT_EQ(true, stack.isEmpty());
 }
-/*TEST(TStack, test_push) {
+TEST(TStack, top_on_empty_stack) {
     TStack<int> stack;
+    ASSERT_ANY_THROW(stack.top());
+}
+TEST(TStack, test_push) {
+    TStack<int> stack;
+    int a = 1;
+    stack.push(a);
+    int e= stack.top();
+    ASSERT_EQ(a, e);
+}
+TEST(TStack, test_push_with_litle_stack) {
+    TStack <int> stack(2);
+    stack.push(0);
     stack.push(1);
-    ASSERT_EQ(1, stack.top());
-}*/
+    int a = 2;
+    stack.push(a);
+    int b = stack.top();
+    ASSERT_EQ(a, b);
 
+}
 
 
 
