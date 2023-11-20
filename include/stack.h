@@ -37,7 +37,7 @@ public:
         delete[] arr;
     }
     void push(T el) {
-        if (topid >sz - 1) {
+        if (topid >=sz - 1) {
             T* arrtmp = new  T[sz * 2];
             std::copy(arr, arr + sz, arrtmp);
             delete[] arr;
@@ -50,7 +50,7 @@ public:
       
     }
     T top() {
-        if (!isEmpty()) {
+        if (isEmpty()!=true) {
             T res = arr[topid];
             return res;
         }
@@ -73,12 +73,18 @@ public:
         return topid == -1;
     }
     bool operator==(const TStack& s) {
-        for (int i = 0; i < getSize(); ++i) {
-            if (arr[i] != s.arr[i]) {
-                return false;
-            }
+        if (s.sz != sz) {
+            return false;
         }
-        return true;
+        else
+            for (int i = 0; i < getSize(); ++i) {
+                if (arr[i] != s.arr[i]) {
+                    return false;
+
+                }
+                else return true;
+            }
+     
     }
    
     
