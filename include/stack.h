@@ -73,18 +73,16 @@ public:
         return topid == -1;
     }
     bool operator==(const TStack& s) {
-        if (s.sz != sz) {
-            return false;
+        bool res = true;
+        if (sz != s.sz) {
+            res = false;
         }
         else
-            for (int i = 0; i < getSize(); ++i) {
-                if (arr[i] != s.arr[i]) {
-                    return false;
-
-                }
-                else return true;
+            for (size_t i = 0; i < sz; i++) {
+                if (arr[i] != s.arr[i])
+                    res = false;
             }
-     
+        return res;
     }
    
     
